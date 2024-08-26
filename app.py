@@ -4,7 +4,7 @@ import psycopg2
 import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 
 
 # Configuration from environment variables
@@ -55,5 +55,4 @@ def api():
 
 
 if __name__ == "__main__":
-    DEBUG_MODE = os.getenv('DEBUG_MODE') == 'True'
-    app.run(debug=DEBUG_MODE)
+   app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
