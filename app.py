@@ -4,8 +4,7 @@ import psycopg2
 import os
 
 app = Flask(__name__)
-
-
+CORS(app, resources={r"/api/*": {"origins": ["https://my-portfilio.onrender.com", "http://127.0.0.1:5500"]}})
 
 # Configuration from environment variables
 app.config['POSTGRES_HOST'] = os.getenv('DB_HOST')
@@ -30,7 +29,7 @@ def api():
         try:
             conn = connect_to_database()
             cur = conn.cursor()
-            cur.execute('SELECT * FROM projects')  # Adjust query according to your database structure
+            cur.execute('SELECT * FROM projects')  
             data = cur.fetchall()
             cur.close()
             conn.close()
