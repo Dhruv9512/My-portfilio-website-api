@@ -4,7 +4,7 @@ import psycopg2
 import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "https://my-portfilio.onrender.com"}})
+
 
 
 # Configuration from environment variables
