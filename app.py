@@ -4,7 +4,7 @@ import psycopg2
 import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": ["http://127.0.0.1:5500", "https://my-portfilio.onrender.com"]}})
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Configuration from environment variables
 app.config['POSTGRES_HOST'] = os.getenv('DB_HOST')
@@ -26,6 +26,7 @@ def connect_to_database():
         return None
 
 @app.route('/api', methods=["POST"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def api():
     if request.method == "POST":
         conn = connect_to_database()
