@@ -1,10 +1,10 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS,cross_origin
+from flask_cors import CORS
 import psycopg2
 import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 
 # Configuration from environment variables
 app.config['POSTGRES_HOST'] = os.getenv('DB_HOST')
@@ -26,7 +26,6 @@ def connect_to_database():
         return None
 
 @app.route('/api', methods=["POST"])
-@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def api():
 
     if request.method == "POST":
