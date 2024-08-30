@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask_cors import CORS,cross_origin
 import psycopg2
 import os
 
@@ -28,6 +28,7 @@ def connect_to_database():
 @app.route('/api', methods=["POST"])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def api():
+
     if request.method == "POST":
         conn = connect_to_database()
         if not conn:
